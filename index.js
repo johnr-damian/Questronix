@@ -1,4 +1,7 @@
 var mysql = require("mysql");
+var express = require("express");
+
+let application = express();
 
 let connection = mysql.createConnection({
     host: "localhost",
@@ -24,4 +27,23 @@ connection.query("CALL `ShowItems`(?)", ["-1"], (error, results, fields) => {
     }
 });
 
-connection.end();
+application.get("/", (request, response) => {
+    response.send("Hello World!");
+});
+
+application.get("/items", (request, response) => {
+    connection.query("CALL `ShowItems`(?)", ["-1"], (error, results, fields) => {
+        if(error)
+        {
+            response.send(error);
+        }
+        else
+        {
+            response.send(results);
+        }
+
+        connection.end();
+    });
+});
+
+application.listen(3000);
