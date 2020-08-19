@@ -4,7 +4,8 @@
   "description": "A Nodejs application for Questronix's practical exam",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "execute": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/johnr-damian/Questronix/issues"
   },
-  "homepage": "https://github.com/johnr-damian/Questronix#readme"
+  "homepage": "https://github.com/johnr-damian/Questronix#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
 }
