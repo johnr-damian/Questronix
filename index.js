@@ -2,36 +2,22 @@ var mysql = require("mysql");
 var express = require("express");
 
 let application = express();
-
-let connection = mysql.createConnection({
-    host: "localhost",
-    user: "rootnodejs",
-    password: "1234",
-    database: "inventory"
-});
-
-connection.connect((error) => {
-    if(error)
-        console.log(error);
-    else
-        console.log("Success Connection");
-});
-connection.query("CALL `ShowItems`(?)", ["-1"], (error, results, fields) => {
-    if(error)
-    {
-        console.log(error);
-    }
-    else
-    {
-        console.log(results);
-    }
-});
+application.set("view engine", "ejs");
 
 application.get("/", (request, response) => {
-    response.send("Hello World!");
-});
-
-application.get("/items", (request, response) => {
+    let connection = mysql.createConnection({
+        host: "localhost",
+        user: "rootnodejs",
+        password: "1234",
+        database: "inventory"
+    });
+    
+    connection.connect((error) => {
+        if(error)
+            console.log(error);
+        else
+            console.log("Success Connection");
+    });
     connection.query("CALL `ShowItems`(?)", ["-1"], (error, results, fields) => {
         if(error)
         {
@@ -39,7 +25,13 @@ application.get("/items", (request, response) => {
         }
         else
         {
-            response.send(results);
+            console.log(fields);
+            console.log(results);
+            console.log(results[0]);
+            response.render("index", {
+                metadata: fields[0],
+                items: results[0]
+            });
         }
 
         connection.end();

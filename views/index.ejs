@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title>Questronix | Home</title>
+    </head>
+    <body>
+        <%- include('partials/navigation') -%>
+        <table>
+            <caption>Items</caption>
+            <tr>
+                <% metadata.slice(0, 2).forEach((header) => { %>
+                    <th><p><%= header.name %></p></th>
+                <% }); %>
+            </tr>
+            <% items.forEach((item) => { %>
+                <tr>
+                    <td><p><%= item.ItemID %></p></td>
+                    <td><p><%= item.Name %></p></td>
+                </tr>
+            <% }); %>
+        </table>
+    </body>
+</html>
