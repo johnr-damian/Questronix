@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 
-<html>
+<html lang='en-US'>
     <head>
-        <meta charset='UTF-8' />
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta http-equiv='x-ua-compatible' content='ie=edge, chrome=1' />
+        <meta name='author' content='John Rhey Damian' />
+        <meta name='description' content='A simple nodejs for Questronix practical exam' />
+
         <title>Questronix | Home</title>
     </head>
     <body>
-        <%- include('partials/navigation') -%>
-        <table>
-            <caption>Items</caption>
-            <tr>
-                <% metadata.slice(0, 2).forEach((header) => { %>
-                    <th><p><%= header.name %></p></th>
-                <% }); %>
-            </tr>
-            <% items.forEach((item) => { %>
+        <header>
+            <%- include('partials/navigation') -%>
+        </header>
+        <main>
+            <table>
+                <caption><h1>Items</h1></caption>
+
                 <tr>
-                    <td><p><%= item.ItemID %></p></td>
-                    <td><p><%= item.Name %></p></td>
+                    <th><p>Name</p></th>
+                    <th><p>Quantity</p></th>
+                    <th><p>Amount</p></th>
                 </tr>
-            <% }); %>
-        </table>
+                <% items.forEach((item) => { %>
+                    <tr>
+                        <td><p><%= item.Name %></p></td>
+                        <td><p><%= item.Quantity %></p></td>
+                        <td><p><%= item.Amount %></p></td>
+                        <td><a href='./view/<%= item.ItemID %>'><p>View</p></a></td>
+                    </tr>
+                <% }) %>
+            </table>
+        </main>
     </body>
 </html>

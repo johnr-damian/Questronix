@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang='en-US'>
+    <head>
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta http-equiv='x-ua-compatible' content='ie=edge, chrome=1' />
+        <meta name='author' content='John Rhey Damian' />
+        <meta name='description' content='A simple nodejs for Questronix practical exam' />
+
+        <title>Questronix | <%= item.Name %></title>
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/navigation') -%>
+        </header>
+        <main>
+            <form method='POST'>
+                <fieldset>
+                    <legend><p>Item Details: </p></legend>
+
+                    <input id='id' type='hidden' value='<%= item.ItemID %>' />
+                    <label for='name'><p>Name: </p></label>
+                    <input id='name' type='text' value='<%= item.Name %>' placeholder='ItemX' />
+                    <label for='quantity'><p>Quantity: </p></label>
+                    <input id='quantity' type='number' value='<%= item.Quantity %>' min='0' max='99' placeholder='0' />
+                    <label for='amount'><p>Amount: </p></label>
+                    <input id='amount' type='number' value='<%= item.Amount %>' min='0' max='9999' placeholder='0' />
+
+                    <button type='submit'>Update</button>
+                    <button type='reset'>Reset</button>
+                </fieldset>
+            </form>
+        </main>
+    </body>
+</html>
