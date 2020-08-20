@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang='en-US'>
+    <head>
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta http-equiv='x-ua-compatible' content='ie=edge, chrome=1' />
+        <meta name='author' content='John Rhey Damian' />
+        <meta name='description' content='A simple nodejs for Questronix practical exam' />
+
+        <title>Questronix | Create New Item</title>
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/navigation') -%>
+        </header>
+        <main>
+            <form method='PUT'>
+                <fieldset>
+                    <legend>Item Details: </legend>
+
+                    <label for='name'><p>Name: </p></label>
+                    <input id='name' type='text' value='' placeholder='ItemX' />
+                    <label for='quantity'><p>Quantity: </p></label>
+                    <input id='quantity' type='number' value='0' min='0' max='99' placeholder='0' />
+                    <label for='amount'><p>Amount: </p></label>
+                    <input id='amount' type='number' value='0' min='0' max='9999' placeholder='0' />
+                    
+                    <button type='submit'>Create</button>
+                    <button type='reset'>Reset</button>
+                </fieldset>
+            </form>
+        </main>
+    </body>
+</html>
