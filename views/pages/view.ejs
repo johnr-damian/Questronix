@@ -15,22 +15,56 @@
             <%- include('../partials/navigation') -%>
         </header>
         <main>
-            <form method='POST'>
+            <form id='itemform' method='POST'>
                 <fieldset>
                     <legend><p>Item Details: </p></legend>
 
-                    <input id='id' type='hidden' value='<%= item.ItemID %>' />
+                    <input id='id' name='ItemID' type='hidden' value='<%= item.ItemID %>' />
                     <label for='name'><p>Name: </p></label>
-                    <input id='name' type='text' value='<%= item.Name %>' placeholder='ItemX' />
+                    <input id='name' name='Name' type='text' value='<%= item.Name %>' placeholder='ItemX' />
                     <label for='quantity'><p>Quantity: </p></label>
-                    <input id='quantity' type='number' value='<%= item.Quantity %>' min='0' max='99' placeholder='0' />
+                    <input id='quantity' name='Quantity' type='number' value='<%= item.Quantity %>' min='0' max='99' placeholder='0' />
                     <label for='amount'><p>Amount: </p></label>
-                    <input id='amount' type='number' value='<%= item.Amount %>' min='0' max='9999' placeholder='0' />
+                    <input id='amount' name='Amount' type='number' value='<%= item.Amount %>' min='0' max='9999' placeholder='0' />
 
                     <button type='submit'>Update</button>
                     <button type='reset'>Reset</button>
+                    <button id='delete' type='button' onclick='Delete()'>Delete</button>
                 </fieldset>
             </form>
         </main>
     </body>
+
+    <script type='text/javascript'>
+        // window.addEventListener("load", () => {
+            
+
+        //     const button = document.getElementById("delete");
+        //     // const itemform = document.getElementById("itemform");
+        //     button.addEventListener("click", (event) => {
+        //         // event.preventDefault();
+        //         console.log("clicked!");
+        //         Delete();
+        //     });
+        // });
+        function Delete()
+            {
+                const request = new XMLHttpRequest();
+                request.onreadystatechange = () => {
+                    if(request.status == 200)
+                    {
+                        window.location.href = "/";
+                        console.log("ready to change!");
+                    }
+                    console.log("invoked onreadystatechange");
+                };
+                var data = {};
+                data.ItemID = document.getElementById("id").value;
+                console.log(data);
+
+                request.open("DELETE", data.ItemID);
+                request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                request.send(JSON.stringify(data));
+            }
+    </script>
 </html>

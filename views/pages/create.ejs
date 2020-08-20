@@ -15,16 +15,16 @@
             <%- include('../partials/navigation') -%>
         </header>
         <main>
-            <form method='PUT'>
+            <form id='itemform' method='POST'>
                 <fieldset>
                     <legend>Item Details: </legend>
 
                     <label for='name'><p>Name: </p></label>
-                    <input id='name' type='text' value='' placeholder='ItemX' />
+                    <input id='name' name='Name' type='text' value='' placeholder='ItemX' />
                     <label for='quantity'><p>Quantity: </p></label>
-                    <input id='quantity' type='number' value='0' min='0' max='99' placeholder='0' />
+                    <input id='quantity' name='Quantity' type='number' value='0' min='0' max='99' placeholder='0' />
                     <label for='amount'><p>Amount: </p></label>
-                    <input id='amount' type='number' value='0' min='0' max='9999' placeholder='0' />
+                    <input id='amount' name='Amount' type='number' value='0' min='0' max='9999' placeholder='0' />
                     
                     <button type='submit'>Create</button>
                     <button type='reset'>Reset</button>
@@ -32,4 +32,37 @@
             </form>
         </main>
     </body>
+
+    <script type='text/javascript'>
+        window.addEventListener("load", () => {
+            function Submit()
+            {
+                const request = new XMLHttpRequest();
+                request.onreadystatechange = () => {
+                    if(request.status == 200)
+                    {
+                        window.location.href = "./";
+                        console.log("ready to change!");
+                    }
+                    console.log("invoked onreadystatechange");
+                };
+                // const form = new FormData(itemform);
+                var data = {};
+                data.Name = document.getElementById("name").value;
+                data.Quantity = document.getElementById("quantity").value;
+                data.Amount = document.getElementById("amount").value;
+                console.log(data);
+
+                request.open("PUT", "create");
+                request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                request.send(JSON.stringify(data));
+            }
+
+            const itemform = document.getElementById("itemform");
+            itemform.addEventListener("submit", (event) => {
+                event.preventDefault();
+                Submit();
+            });
+        });
+    </script>
 </html>
