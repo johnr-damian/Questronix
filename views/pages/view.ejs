@@ -49,31 +49,17 @@
     </body>
 
     <script type='text/javascript'>
-        // window.addEventListener("load", () => {
-            
-
-        //     const button = document.getElementById("delete");
-        //     // const itemform = document.getElementById("itemform");
-        //     button.addEventListener("click", (event) => {
-        //         // event.preventDefault();
-        //         console.log("clicked!");
-        //         Delete();
-        //     });
-        // });
         function Delete()
             {
                 const request = new XMLHttpRequest();
                 request.onreadystatechange = () => {
                     if(request.status == 200)
                     {
-                        window.location.href = "/";
-                        console.log("ready to change!");
+                        window.location.href = "/";   
                     }
-                    console.log("invoked onreadystatechange");
                 };
                 var data = {};
                 data.ItemID = document.getElementById("id").value;
-                console.log(data);
 
                 request.open("DELETE", data.ItemID);
                 request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
