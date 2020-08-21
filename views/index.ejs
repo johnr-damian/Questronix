@@ -8,30 +8,40 @@
         <meta name='author' content='John Rhey Damian' />
         <meta name='description' content='A simple nodejs for Questronix practical exam' />
 
-        <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style type='text/css'>
+            html, body, table
+            {
+                height: 100%;
+            }
+        </style>
         <title>Questronix | Home</title>
     </head>
-    <body>
-        <header>
+    <body class='container'>
+        <header class='row'>
             <%- include('partials/navigation') -%>
         </header>
-        <main>
-            <table>
+        <main class='row'>
+            <table class='col-12 table table-bordered table-hover table-sm text-center'>
                 <caption><h1>Items</h1></caption>
 
-                <tr>
-                    <th><p>Name</p></th>
-                    <th><p>Quantity</p></th>
-                    <th><p>Amount</p></th>
-                </tr>
-                <% items.forEach((item) => { %>
+                <thead>
                     <tr>
-                        <td><p><%= item.Name %></p></td>
-                        <td><p><%= item.Quantity %></p></td>
-                        <td><p><%= item.Amount %></p></td>
-                        <td><a href='./view/<%= item.ItemID %>'><p>View</p></a></td>
+                        <th><p>Name</p></th>
+                        <th><p>Quantity</p></th>
+                        <th><p>Amount</p></th>
                     </tr>
-                <% }) %>
+                </thead>
+                <tbody>
+                    <% items.forEach((item) => { %>
+                        <tr>
+                            <td><p><%= item.Name %></p></td>
+                            <td><p><%= item.Quantity %></p></td>
+                            <td><p><%= item.Amount %></p></td>
+                            <td><a class='btn btn-primary btn-sm' href='./view/<%= item.ItemID %>'><p>View</p></a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
             </table>
         </main>
     </body>
