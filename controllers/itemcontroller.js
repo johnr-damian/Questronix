@@ -67,7 +67,6 @@ exports.ShowItems = (request, response) => {
         }
         else
         {
-            console.log(results);
             if(ItemID === -1)
                 response.render("index", {
                     items: results[0]
