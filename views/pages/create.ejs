@@ -8,26 +8,39 @@
         <meta name='author' content='John Rhey Damian' />
         <meta name='description' content='A simple nodejs for Questronix practical exam' />
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style type='text/css'>
+            html, body, form
+            {
+                height: 100%;
+            }
+        </style>
         <title>Questronix | Create New Item</title>
     </head>
-    <body>
-        <header>
+    <body class='container'>
+        <header class='row'>
             <%- include('../partials/navigation') -%>
         </header>
-        <main>
-            <form id='itemform' method='POST'>
+        <main class='row'>
+            <form id='itemform' class='col-12' method='POST'>
                 <fieldset>
                     <legend>Item Details: </legend>
 
-                    <label for='name'><p>Name: </p></label>
-                    <input id='name' name='Name' type='text' value='' placeholder='ItemX' />
-                    <label for='quantity'><p>Quantity: </p></label>
-                    <input id='quantity' name='Quantity' type='number' value='0' min='0' max='99' placeholder='0' />
-                    <label for='amount'><p>Amount: </p></label>
-                    <input id='amount' name='Amount' type='number' value='0' min='0' max='9999' placeholder='0' />
+                    <div class='form-group row'>
+                        <label class='col-2' for='name'><p>Name: </p></label>
+                        <input id='name' class='form-control col-10' name='Name' type='text' value='' placeholder='ItemX' />
+                    </div>
+                    <div class='form-group row'>
+                        <label class='col-2' for='quantity'><p>Quantity: </p></label>
+                        <input id='quantity' class='form-control col-10' name='Quantity' type='number' value='0' min='0' max='99' placeholder='0' />
+                    </div>                    
+                    <div class='form-group row'>
+                        <label class='col-2' for='amount'><p>Amount: </p></label>
+                        <input id='amount' class='form-control col-10' name='Amount' type='number' value='0' min='0' max='9999' placeholder='0' />
+                    </div>                    
                     
-                    <button type='submit'>Create</button>
-                    <button type='reset'>Reset</button>
+                    <button class='btn btn-primary' type='submit'>Create</button>
+                    <button class='btn btn-default' type='reset'>Reset</button>
                 </fieldset>
             </form>
         </main>
@@ -42,16 +55,12 @@
                     if(request.status == 200)
                     {
                         window.location.href = "./";
-                        console.log("ready to change!");
                     }
-                    console.log("invoked onreadystatechange");
                 };
-                // const form = new FormData(itemform);
                 var data = {};
                 data.Name = document.getElementById("name").value;
                 data.Quantity = document.getElementById("quantity").value;
                 data.Amount = document.getElementById("amount").value;
-                console.log(data);
 
                 request.open("PUT", "create");
                 request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

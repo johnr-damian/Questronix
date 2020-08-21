@@ -2,7 +2,6 @@ const ITEMMODEL = require("../models/itemmodel.js");
 
 exports.CreateNewItem = (request, response) => {
     console.log("Controller -> CreateNewItem");
-    console.log(request.body);
 
     //Create the item
     ITEMMODEL.CreateNewItem(request.body.Name, request.body.Quantity, request.body.Amount, (error, results) => {

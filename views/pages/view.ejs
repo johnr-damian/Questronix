@@ -8,59 +8,58 @@
         <meta name='author' content='John Rhey Damian' />
         <meta name='description' content='A simple nodejs for Questronix practical exam' />
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style type='text/css'>
+            html, body, form
+            {
+                height: 100%;
+            }
+        </style>
         <title>Questronix | <%= item.Name %></title>
     </head>
-    <body>
-        <header>
+    <body class='container'>
+        <header class='row'>
             <%- include('../partials/navigation') -%>
         </header>
-        <main>
-            <form id='itemform' method='POST'>
+        <main class='row'>
+            <form id='itemform' class='col-12' method='POST'>
                 <fieldset>
                     <legend><p>Item Details: </p></legend>
 
                     <input id='id' name='ItemID' type='hidden' value='<%= item.ItemID %>' />
-                    <label for='name'><p>Name: </p></label>
-                    <input id='name' name='Name' type='text' value='<%= item.Name %>' placeholder='ItemX' />
-                    <label for='quantity'><p>Quantity: </p></label>
-                    <input id='quantity' name='Quantity' type='number' value='<%= item.Quantity %>' min='0' max='99' placeholder='0' />
-                    <label for='amount'><p>Amount: </p></label>
-                    <input id='amount' name='Amount' type='number' value='<%= item.Amount %>' min='0' max='9999' placeholder='0' />
+                    <div class='form-group row'>
+                        <label class='col-2' for='name'><p>Name: </p></label>
+                        <input id='name' class='form-control col-10' name='Name' type='text' value='<%= item.Name %>' placeholder='ItemX' />
+                    </div>
+                    <div class='form-group row'>
+                        <label class='col-2' for='quantity'><p>Quantity: </p></label>
+                        <input id='quantity' class='form-control col-10' name='Quantity' type='number' value='<%= item.Quantity %>' min='0' max='99' placeholder='0' />
+                    </div>
+                    <div class='form-group row'>
+                        <label class='col-2' for='amount'><p>Amount: </p></label>
+                        <input id='amount' class='form-control col-10' name='Amount' type='number' value='<%= item.Amount %>' min='0' max='9999' placeholder='0' />
+                    </div>                    
 
-                    <button type='submit'>Update</button>
-                    <button type='reset'>Reset</button>
-                    <button id='delete' type='button' onclick='Delete()'>Delete</button>
+                    <button class='btn btn-primary' type='submit'>Update</button>
+                    <button class='btn btn-secondary' id='delete' type='button' onclick='Delete()'>Delete</button>
+                    <button class='btn btn-default' type='reset'>Reset</button>                    
                 </fieldset>
             </form>
         </main>
     </body>
 
     <script type='text/javascript'>
-        // window.addEventListener("load", () => {
-            
-
-        //     const button = document.getElementById("delete");
-        //     // const itemform = document.getElementById("itemform");
-        //     button.addEventListener("click", (event) => {
-        //         // event.preventDefault();
-        //         console.log("clicked!");
-        //         Delete();
-        //     });
-        // });
         function Delete()
             {
                 const request = new XMLHttpRequest();
                 request.onreadystatechange = () => {
                     if(request.status == 200)
                     {
-                        window.location.href = "/";
-                        console.log("ready to change!");
+                        window.location.href = "/";   
                     }
-                    console.log("invoked onreadystatechange");
                 };
                 var data = {};
                 data.ItemID = document.getElementById("id").value;
-                console.log(data);
 
                 request.open("DELETE", data.ItemID);
                 request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
